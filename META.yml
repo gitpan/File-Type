@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name: File-Type
-version: 0.12
+version: 0.20
 license: perl
 distribution_type: module
 requires:
@@ -12,7 +12,7 @@ conflicts: {}
 provides:
   File::Type:
     file: lib/File/Type.pm
-    version: 0.12
+    version: 0.20
   File::Type::Builder:
     file: lib/File/Type/Builder.pm
     version: 0.11

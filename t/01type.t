@@ -27,6 +27,7 @@ my $types = {
   "files/blank.zip"  => "application/zip",
   "files/File-Type.html" => "text/html",
   "files/standards.mov" => "video/quicktime",
+  "files/kite.asf" => "video/x-ms-asf",
 };
 
 plan tests => 2 * scalar keys %{ $types };
