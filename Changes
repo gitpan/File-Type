@@ -1,5 +1,10 @@
 Changelog for File::Type
 
+0.12 Fri Dec 05 16:40:00 GMT 2003
+
+     - Fixed more minor documentation glitches
+     - Removed File::Slurp dependency as it's now a minefield
+
 0.11 Wed Sep 24 10:40:00 BST 2003
 
      - Fixed minor documentation glitches

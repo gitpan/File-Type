@@ -3,9 +3,7 @@ use strict;
 
 use lib './lib','../lib';
 
-use File::Slurp;
 use File::Type;
-
 use Test::More;
 
 my $types = {
@@ -56,4 +54,15 @@ foreach my $filename (sort keys %{ $types }) {
   }
 
   is($ft->mime_type($argument), $mimetype, "magically checked $checktype");
+}
+
+sub read_file {
+  my $file = shift;
+
+  local $/ = undef;
+  open FILE, $file or die "Can't open file $file: $!";
+  my $data = <FILE>;
+  close FILE;
+  
+  return $data;
 }

@@ -192,14 +192,14 @@ File::Type::Builder - parse mime-magic and generate code
 =head1 DESCRIPTION
 
 Reads in the mime-magic file format and translates it to code.
-This would be longer if I really expected anyone other than me to run
-the code.
+(This documentation would be longer if I really expected anyone other 
+than me to run the code.)
 
 =head1 METHODS
 
 =head2 new
 
-Creates a new File::Type::Build object.
+Creates a new File::Type::Builder object.
 
 =head2 parse_magic
 
