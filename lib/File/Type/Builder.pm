@@ -4,7 +4,7 @@ use warnings;
 
 use IO::File;
 
-our $VERSION = 0.04;
+our $VERSION = 0.05;
 
 sub new {
   my $class = shift;
@@ -31,7 +31,7 @@ sub parse_magic {
               belong | bedate | leshort | lelong | ledate)(\s+)?//x;
   $parsed->{pattern_type} = $1;
   
-  unless ($parsed->{pattern_type} =~ m/^(string|beshort)/) {
+  unless ($parsed->{pattern_type} =~ m/^(string|beshort|belong)/) {
     return undef;
   }
   
@@ -49,6 +49,8 @@ sub parse_magic {
     last PARSE unless ($pattern =~ m!\\\s$!);
   }
   # then tidy up
+  return undef unless defined($pattern);
+
   $pattern =~ s/\s*$// unless $pattern =~ m/\\\s$/;
   $pattern =~ s/\\(\s)/$1/g;
   $pattern =~ s/\\$//g;
@@ -115,16 +117,17 @@ sub string {
   return $code;
 } 
 
-sub beshort {
+sub be {
   my $self   = shift;
   my $parsed = shift;
+  my $length = shift;
 
   # build both sides of the conditional
   my $offset  = $parsed->{offset};
   my $pattern = $parsed->{pattern};
 
   # start with substr handling
-  my $code = $self->_substr_handling($offset, 2);
+  my $code = $self->_substr_handling($offset, $length);
 
   # rhs: template
   my $rhs;
@@ -172,19 +175,19 @@ __END__
 
 =head1 NAME
 
-File::Type::Build - parse mime-magic and generate code
+File::Type::Builder - parse mime-magic and generate code
 
 =head1 SYNOPSIS
 
-my $build = File::Type::Build->new();
-
-while (<magic>) {
-  chomp;
-  my $parsed = $build->parse_magic($_);
-  
-  my $code   = $build->string_start($parsed);
-  (or string_offset or beshort)
-}
+    my $build = File::Type::Builder->new();
+    
+    while (<magic>) {
+      chomp;
+      my $parsed = $build->parse_magic($_);
+      
+      my $code   = $build->string_start($parsed);
+      (or string_offset or beshort)
+    }
 
 =head1 DESCRIPTION
 
@@ -212,9 +215,10 @@ Builds code to match magic that's of type string.
 
 Has to do some cleverness to make the regular expression work properly.
 
-=head2 beshort
+=head2 be
 
-Builds code to match 'beshort' magic (eg audio/mpeg, image/jpeg).
+Builds code to match 'beshort' and 'belong' magic (eg audio/mpeg, 
+image/jpeg).
 
 =head1 PRIVATE METHODS
 
@@ -241,6 +245,8 @@ escaped.
 * Make verbosity/logging nicer.
 
 * Find more edge cases.
+
+* Remove redundant 'if (length $data > 0)' check.
 
 =back
 

@@ -1,6 +1,11 @@
 Changelog for File::Type
 
-0.04 Tue Aug 26 11:14:00 BST 2003
+0.05 Tue Aug 26 15:18:00 BST 2003
+
+     - fixed documentation bugs
+     - added belong to generation and rules 
+     
+0.04 Tue Aug 26 13:02:00 BST 2003
 
      - first public release
      - fixed substr/undef warnings on small files

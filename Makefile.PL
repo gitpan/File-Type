@@ -1,7 +1,7 @@
     use ExtUtils::MakeMaker;
     WriteMakefile
       ('DISTNAME' => 'File-Type',
-       'VERSION' => '0.04',
+       'VERSION' => '0.05',
        'PL_FILES' => {},
        'PREREQ_PM' => {
 			'Test::More' => '0.01',

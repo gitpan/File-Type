@@ -39,8 +39,14 @@ if ($in->open("< mime-magic")) {
       print $out $code;
       $count++;
     
-    } elsif ($parsed->{pattern_type} eq 'beshort') {
-      my $code = $build->beshort($parsed);      
+    } elsif ($parsed->{pattern_type} =~ m/^be/) {
+      my $code;
+      if ($parsed->{pattern_type} eq 'beshort') {
+        $code = $build->be($parsed, 2);      
+      }
+      if ($parsed->{pattern_type} eq 'belong') {
+        $code = $build->be($parsed, 4);
+      }      
       next unless defined($code);
 
       print $out $code;
