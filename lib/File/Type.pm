@@ -4,7 +4,7 @@ use warnings;
 
 use IO::File;
 
-our $VERSION = 0.05;
+our $VERSION = "0.10";
 
 sub new {
   my $class = shift;
@@ -13,16 +13,43 @@ sub new {
   return $self;
 }
 
+sub mime_type {
+  # magically route argument
+
+  my($self, $argument) = @_;
+
+  if (length $argument > 1024 || $argument =~ m/\n/) {
+    # assume it's data. Saves a stat call if the data's long
+    # also avoids stat warning if there's a newline
+    return $self->checktype_contents($argument);
+  }
+  
+  if (-e $argument) {
+    if (!-d $argument) {
+      return $self->checktype_filename($argument);
+    } else {
+      return undef; # directories don't have mime types
+    }
+  }  
+  # otherwise, fall back to checking the string as if it's data again
+  return $self->checktype_contents($argument);
+}
+
 sub checktype_filename {
+  # reads in 16k of selected file, or returns undef if can't open,
+  # then checks contents
+
   my($self, $filename) = @_;
-  my $fh = IO::File->new($filename) || return;
+  my $fh = IO::File->new($filename) || return undef;
   my $data;
-  $fh->read($data, 4068);
+  $fh->read($data, 16*1024);
   $fh->close;
   return $self->checktype_contents($data);
 }
 
 sub checktype_contents {
+  # checks file contents
+
   my($self, $data) = @_;
   my $substr;
 
@@ -1430,6 +1457,10 @@ File::Type - determine file type using magic
     # alternatively, check file from disk
     my $type_from_file = $ft->checktype_filename($file);
 
+    # convenient method for checking either a file or data
+    my $type_1 = $ft->mime_type($file);
+    my $type_2 = $ft->mime_type($data);
+
 =head1 DESCRIPTION
 
 File::Type uses magic numbers (typically at the start of a file) to 
@@ -1444,9 +1475,16 @@ type of a file.
 
 Returns a new File::Type object.
 
+=head2 mime_type($argument)
+
+Takes either data or a filename, determines what it is, and passes the
+argument through to the relevant method below. If the argument is a 
+directory, returns undef.
+
 =head2 checktype_filename($filename)
 
-Opens $filename (if possible) and returns the MIME type of the file.
+Opens $filename (if possible; if not, returns undef) and returns the MIME 
+type of the file.
 
 =head2 checktype_contents($data)
 

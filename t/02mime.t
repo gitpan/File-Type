@@ -8,12 +8,6 @@ use File::Type;
 
 use Test::More;
 
-=for testing
-
-Set up a list of files to test.
-
-=cut
-
 my $types = {
   "00setup.t" => "application/x-perl",
   "files/blank.jpg" => "image/jpeg",
@@ -31,7 +25,7 @@ my $types = {
   "files/standards.mov" => "video/quicktime",
 };
 
-plan tests => 2 * scalar keys %{ $types };
+plan tests => scalar keys %{ $types };
 
 =for testing
 
@@ -47,9 +41,19 @@ Loop over the objects, testing each both ways.
 
 =cut
 
-foreach my $filename (sort keys %$types) {
+foreach my $filename (sort keys %{ $types }) {
   my $mimetype = $types->{$filename};
-  is($ft->checktype_filename("t/$filename"), $mimetype, "check file $filename");
-  my $data = read_file("t/$filename") || die;
-  is($ft->checktype_contents($data), $mimetype, "check data $filename");
+  my $argument = $filename;
+  my $checktype;
+
+  # randomly read in file, or make filename correct
+  if (rand > 0.5) {
+    $argument = read_file("t/$filename") || die;
+    $checktype = 'data';
+  } else {
+    $argument = "t/".$argument;
+    $checktype = 'file';
+  }
+
+  is($ft->mime_type($argument), $mimetype, "magically checked $checktype");
 }

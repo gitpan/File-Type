@@ -1,4 +1,3 @@
-Build
 Build.PL
 Changes
 MANIFEST			This list of files
@@ -11,6 +10,7 @@ lib/File/Type.pm
 lib/File/Type/Builder.pm
 t/00setup.t
 t/01type.t
+t/02mime.t
 t/files/File-Type.html
 t/files/blank.bmp
 t/files/blank.gif
