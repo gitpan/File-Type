@@ -22,6 +22,8 @@ my $types = {
   "files/File-Type.html" => "text/html",
   "files/standards.mov" => "video/quicktime",
   "files/kite.asf" => "video/x-ms-asf",
+  "files/0001.avi" => "video/x-msvideo",
+  "files/0001.wav" => "audio/x-wav",
 };
 
 plan tests => scalar keys %{ $types };

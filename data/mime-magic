@@ -97,7 +97,8 @@
 0	string	SBI			audio/x-sbi
 0	string	Creative\ Voice\ File	audio/x-voc
 0	belong		0x4e54524b	audio/x-multitrack
-0	string		RIFF		audio/x-wav
+8	string		AVI 		video/x-msvideo
+8	string		WAVE		audio/x-wav
 0	string		EMOD		audio/x-emod
 0	belong		0x2e7261fd	audio/x-pn-realaudio
 0	string		MTM		audio/x-multitrack

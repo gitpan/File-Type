@@ -12,6 +12,8 @@ lib/File/Type/Builder.pm
 t/00setup.t
 t/01type.t
 t/02mime.t
+t/files/0001.avi
+t/files/0001.wav
 t/files/File-Type.html
 t/files/blank.bmp
 t/files/blank.gif
@@ -23,6 +25,6 @@ t/files/id3lib1.mp3
 t/files/kite.asf
 t/files/rebound.wav
 t/files/standards.mov
-t/files/tarball.tar
 t/files/tarball.tar.bz2
 t/files/tarball.tar.gz
+t/files/tarball.tar
