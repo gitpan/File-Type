@@ -1,0 +1,21 @@
+Changelog for File::Type
+
+0.04 Tue Aug 26 11:14:00 BST 2003
+
+     - first public release
+     - fixed substr/undef warnings on small files
+     
+0.03 Tue Aug 26 11:14:00 BST 2003
+
+     - added and documented clearcode.org mime-magic
+     - smaller test images
+     
+0.02 Fri Aug 22 15:00:00 BST 2003
+
+     - corrected Builder.pm to handle tar and gzip types
+     - many additional tests
+     
+0.01 Thu Aug 21 17:30:00 BST 2003
+
+     - initial version
+     - works for image/jpeg

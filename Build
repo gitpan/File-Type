@@ -1,0 +1,28 @@
+#!/usr/local/bin/perl
+
+BEGIN {
+  $^W = 1;  # Use warnings
+  my $start_dir = '/home/paul/projects/File-Type';
+  chdir($start_dir) or die "Cannot chdir to $start_dir: $!";
+  @INC = 
+    (
+     '/usr/local/lib/perl5/5.8.0/i686-linux',
+     '/usr/local/lib/perl5/5.8.0',
+     '/usr/local/lib/perl5/site_perl/5.8.0/i686-linux',
+     '/usr/local/lib/perl5/site_perl/5.8.0',
+     '/usr/local/lib/perl5/site_perl',
+     '/home/paul/projects/File-Type'
+    );
+}
+
+use Module::Build;
+
+# This should have just enough arguments to be able to bootstrap the rest.
+my $build = resume Module::Build (
+  properties => {
+    config_dir => '/home/paul/projects/File-Type/_build',
+    build_script => '/home/paul/projects/File-Type/Build',
+  },
+);
+
+$build->dispatch;
