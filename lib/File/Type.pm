@@ -4,7 +4,7 @@ use warnings;
 
 use IO::File;
 
-our $VERSION = "0.21";
+our $VERSION = "0.22";
 
 sub new {
   my $class = shift;
@@ -468,6 +468,15 @@ sub checktype_contents {
   }
   if ($data =~ m[^TOC]) {
     return q{audio/x-toc};
+  }
+  if (length $data > 0) {
+    $substr = substr($data, 0, 2);
+    if (pack('H*', 'fffa') eq $substr ) {
+      return q{audio/mp3};
+    }
+  }
+  if ($data =~ m[^ID3]) {
+    return q{audio/mp3};
   }
   if ($data =~ m[^\/\/]) {
     return q{text/cpp};
@@ -1401,6 +1410,9 @@ sub checktype_contents {
     if (pack('H*', '4AFC') eq $substr ) {
       return q{OS9/68K module:};
     }
+  }
+  if ($data =~ m[^\%PDF\-]) {
+    return q{application/pdf};
   }
   if ($data =~ m[^\%\!]) {
     return q{application/postscript};

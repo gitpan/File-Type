@@ -123,6 +123,8 @@
 1080	string	16CN		audio/x-taketracker-mod
 1080	string	32CN		audio/x-taketracker-mod
 0       string          TOC             audio/x-toc
+0	beshort&0xfffe	0xfffa	audio/mp3
+0	string	ID3	audio/mp3
 0	short		03401		application/x-executable-file
 0	long		0406		application/x-executable-file
 0	short		0406		application/x-executable-file
@@ -636,7 +638,7 @@
 0	long		0xefbe	OSF/Rose object
 0	short		0565	i386 COFF object
 0	short	0x2a17	"compact bitmap" format (Poskanzer)
-0	string		%PDF-		PDF document
+0	string		%PDF-		application/pdf
 0	lelong		0101555		PDP-11 single precision APL workspace
 0	lelong		0101554		PDP-11 double precision APL workspace
 0	leshort		0407		PDP-11 executable

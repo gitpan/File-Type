@@ -19,9 +19,11 @@ t/files/blank.bmp
 t/files/blank.gif
 t/files/blank.jpg
 t/files/blank.png
+t/files/blank.pdf
 t/files/blank.tif
 t/files/blank.zip
 t/files/id3lib1.mp3
+t/files/id3v2.4.mp3
 t/files/kite.asf
 t/files/rebound.wav
 t/files/standards.mov

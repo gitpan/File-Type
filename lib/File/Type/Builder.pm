@@ -69,7 +69,7 @@ sub parse_magic {
     # warn "On line $line, no or improper MIME type: not used\n";
     return undef;
   }
- 
+
   return $parsed;
 }
 

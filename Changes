@@ -1,6 +1,11 @@
 Changelog for File::Type
 
-0.21 Mon Apr 26 14:10:00 GMT 2004
+0.22 Thu May 06 11:00:00 BST 2004
+
+     - Added MIME type for PDFs
+     - Added some MP3 detection
+
+0.21 Mon Apr 26 14:10:00 BST 2004
 
      - Differentiated .wav and .avi
 
