@@ -4,7 +4,7 @@ use warnings;
 
 use IO::File;
 
-our $VERSION = "0.10";
+our $VERSION = "0.11";
 
 sub new {
   my $class = shift;
@@ -1452,7 +1452,7 @@ File::Type - determine file type using magic
     my $ft = File::Type->new();
     
     # read in data from file to $data, then
-    my $type_from_data = $ft->checktype_data($data);
+    my $type_from_data = $ft->checktype_contents($data);
     
     # alternatively, check file from disk
     my $type_from_file = $ft->checktype_filename($file);
@@ -1497,8 +1497,6 @@ type of the file.
 
 * Add additional magic match criteria
 
-*   # end automatically find MIME type whether passed data or a filename.
-
 =back
 
 =head1 BUGS
@@ -1529,7 +1527,7 @@ L<File::Type::Builder>, which generates the code at the heart of this module.
 
 =head1 ACKNOWLEDGMENTS
 
-File::Type is built from a mime-magic file from clearcode.org. The original
+File::Type is built from a mime-magic file from cleancode.org. The original
 can be found at L<http://cleancode.org/cgi-bin/viewcvs.cgi/email/mime-magic.mime?rev=1.1.1.1>.
 
 =head1 AUTHOR

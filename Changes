@@ -1,5 +1,9 @@
 Changelog for File::Type
 
+0.11 Wed Sep 24 10:40:00 BST 2003
+
+     - Fixed minor documentation glitches
+
 0.10 Mon Sep 01 11:45:00 BST 2003
 
      - added mime_type method to take either file or data

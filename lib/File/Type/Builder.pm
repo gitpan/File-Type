@@ -4,7 +4,7 @@ use warnings;
 
 use IO::File;
 
-our $VERSION = 0.05;
+our $VERSION = 0.11;
 
 sub new {
   my $class = shift;
@@ -65,7 +65,7 @@ sub parse_magic {
 
   # check we've got a mime type to return
   if (!length($parsed->{mime_type})
-   || $parsed->{mime_type} !~ m![^/]*/[^/]*!) {
+   || $parsed->{mime_type} !~ m!^[^/]*/[^/]*$!) {
     # warn "On line $line, no or improper MIME type: not used\n";
     return undef;
   }
@@ -240,7 +240,7 @@ escaped.
 
 =over 4
 
-* Add handlers for other magic types (belong, bedate, byte, etc)
+* Add handlers for other magic types (bedate, byte, etc)
 
 * Make verbosity/logging nicer.
 
